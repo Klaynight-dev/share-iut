@@ -1,0 +1,688 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Math</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6366cd10-c08a-4a17-a964-f67d3b3d149e" class="page sans"><header><h1 class="page-title">Math</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/school_gray.svg" style="width:14px;height:14px"/></span>Matière</th><td><span class="selected-value select-value-color-green">Mathématiques</span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Mots clefs pour l’IA</th><td></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/graduate_gray.svg" style="width:14px;height:14px"/></span>Semestre</th><td><span class="selected-value select-value-color-green">S1</span></td></tr><tr class="property-row property-row-status"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesStatus"><path d="M8.75488 1.02344C8.75488 0.613281 8.41309 0.264648 8.00293 0.264648C7.59277 0.264648 7.25098 0.613281 7.25098 1.02344V3.11523C7.25098 3.51855 7.59277 3.86719 8.00293 3.86719C8.41309 3.86719 8.75488 3.51855 8.75488 3.11523V1.02344ZM3.91504 5.0293C4.20215 5.31641 4.69434 5.32324 4.97461 5.03613C5.26855 4.74902 5.26855 4.25684 4.98145 3.96973L3.53906 2.52051C3.25195 2.2334 2.7666 2.21973 2.47949 2.50684C2.19238 2.79395 2.18555 3.28613 2.47266 3.57324L3.91504 5.0293ZM10.9629 4.01758C10.6826 4.30469 10.6826 4.79688 10.9697 5.08398C11.2568 5.37109 11.749 5.36426 12.0361 5.07715L13.4854 3.62793C13.7725 3.34082 13.7725 2.84863 13.4785 2.55469C13.1982 2.27441 12.7061 2.27441 12.4189 2.56152L10.9629 4.01758ZM15.0234 8.78906C15.4336 8.78906 15.7822 8.44727 15.7822 8.03711C15.7822 7.62695 15.4336 7.28516 15.0234 7.28516H12.9385C12.5283 7.28516 12.1797 7.62695 12.1797 8.03711C12.1797 8.44727 12.5283 8.78906 12.9385 8.78906H15.0234ZM0.975586 7.28516C0.56543 7.28516 0.223633 7.62695 0.223633 8.03711C0.223633 8.44727 0.56543 8.78906 0.975586 8.78906H3.07422C3.48438 8.78906 3.83301 8.44727 3.83301 8.03711C3.83301 7.62695 3.48438 7.28516 3.07422 7.28516H0.975586ZM12.0361 10.9902C11.749 10.71 11.2568 10.71 10.9629 10.9971C10.6826 11.2842 10.6826 11.7764 10.9697 12.0635L12.4258 13.5127C12.7129 13.7998 13.2051 13.793 13.4922 13.5059C13.7793 13.2256 13.7725 12.7266 13.4854 12.4395L12.0361 10.9902ZM2.52051 12.4395C2.22656 12.7266 2.22656 13.2188 2.50684 13.5059C2.79395 13.793 3.28613 13.7998 3.57324 13.5127L5.02246 12.0703C5.31641 11.7832 5.31641 11.291 5.03613 11.0039C4.74902 10.7168 4.25684 10.71 3.96973 10.9971L2.52051 12.4395ZM8.75488 12.9658C8.75488 12.5557 8.41309 12.207 8.00293 12.207C7.59277 12.207 7.25098 12.5557 7.25098 12.9658V15.0576C7.25098 15.4609 7.59277 15.8096 8.00293 15.8096C8.41309 15.8096 8.75488 15.4609 8.75488 15.0576V12.9658Z"></path></svg></span>État</th><td><span class="status-value select-value-color-red"><div class="status-dot status-dot-color-red"></div>Pas appris</span></td></tr></tbody></table></header><div class="page-body"><nav id="811f8ad5-abee-4e42-9ba6-9a2fda065f83" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#def030c1-7d73-44cb-9334-56e1a8a20780"><mark class="highlight-yellow">Mes notes sur les Math</mark></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2262ed45-2782-4ff0-859e-2a04c2c2ff37">Questions :</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1cbebef3-bf15-4a47-bff1-b826a23e1bcf">Notes :</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#64f979d7-0b74-4cc9-9a30-5ad3c87c541d">TD1</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#76e98d8b-65bd-4e4d-939e-53f2678d478c">A.</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#6ea5d3d7-39a8-4ff9-b908-1f2d229bb85d">Ex 1 :</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5953d860-a5a7-4227-a51a-8a723b0e79f6">B.</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#ca901ab8-b97e-47c1-93b3-ab114f229a50">Ex 2 :</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#72b95872-c12b-4de0-8f3c-eefb2fedcd29">Ex 3 :</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9a959394-782a-4e4f-90c3-8fb4bb05fa3e">B.</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#67af7bbb-31bd-4a5c-805d-f48bd709d18b">Ex 4 :</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#3473cd6b-df90-4aaf-9d8e-094b83e79bd9">Ex 5 :</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b6dab04a-d3f8-4edb-8da1-8942277596f2"><mark class="highlight-blue">Slides</mark></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#309b75e8-d15a-44f2-8349-b8a685b18b57"><mark class="highlight-teal">Pour réviser le cours)</mark></a></div></nav><figure id="16508cb7-3423-482f-8054-3e53cf620462" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mstyle mathsize="2.488em"><mrow><mi mathvariant="monospace">T</mi><mi mathvariant="monospace">i</mi><mi mathvariant="monospace">t</mi><mi mathvariant="monospace">r</mi><mi mathvariant="monospace">e</mi><mtext> </mtext><mi mathvariant="monospace">d</mi><mi mathvariant="monospace">u</mi><mtext> </mtext><mi mathvariant="monospace">c</mi><mi mathvariant="monospace">o</mi><mi mathvariant="monospace">u</mi><mi mathvariant="monospace">r</mi><mi mathvariant="monospace">s</mi></mrow></mstyle></mrow><annotation encoding="application/x-tex">{\mathtt {\Huge {Titre~du~cours}}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.5204em;"></span><span class="mord"><span class="mord sizing reset-size6 size11"><span class="mord mathtt">Titre</span><span class="mspace nobreak"> </span><span class="mord mathtt">du</span><span class="mspace nobreak"> </span><span class="mord mathtt">cours</span></span></span></span></span></span></span></div></figure><h2 id="def030c1-7d73-44cb-9334-56e1a8a20780" class="block-color-yellow_background"><mark class="highlight-yellow">Mes notes sur les Math</mark></h2><hr id="5dd78669-4434-4a19-82d9-8d4cb91b23c6"/><div id="00d77073-8dc2-43ad-b04d-c208eb5f226f" class="column-list"><div id="4336af97-a56d-4936-a048-fd3ecf2ea2b0" style="width:25%" class="column"><h3 id="2262ed45-2782-4ff0-859e-2a04c2c2ff37" class="">Questions :</h3><p id="50182f07-e978-4e33-82fe-b2f33989a8ef" class="">
+</p></div><div id="dc3ae3d6-e590-453f-b91f-a40703ad70f8" style="width:75%" class="column"><h3 id="1cbebef3-bf15-4a47-bff1-b826a23e1bcf" class="">Notes :</h3><p id="19a73af6-4508-43b9-8c9c-69f723cfff16" class="">2h ~ 4h / semaines</p><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="53c33212-7485-4e35-a734-026e618106aa"><div style="font-size:1.5em"><span class="icon">🚀</span></div><div style="width:100%"></div></figure><p id="464df05d-9d15-4d54-bef6-ca17f699c29b" class="">
+</p></div></div><h1 id="64f979d7-0b74-4cc9-9a30-5ad3c87c541d" class="">TD1</h1><h2 id="76e98d8b-65bd-4e4d-939e-53f2678d478c" class="">A.</h2><h3 id="6ea5d3d7-39a8-4ff9-b908-1f2d229bb85d" class="">Ex 1 :</h3><ol type="1" id="4e0cd0a1-6c7b-4ade-a06b-74240b204213" class="numbered-list" start="1"><li>Oui</li></ol><ol type="1" id="2d01ccef-2394-4480-9047-2ee886c8f5ab" class="numbered-list" start="2"><li>Oui</li></ol><ol type="1" id="330309b5-1bc7-4ea4-b0ae-6362d8cf68e0" class="numbered-list" start="3"><li>Non</li></ol><ol type="1" id="987c1f4a-ee60-4d9e-af5f-71867a420b3d" class="numbered-list" start="4"><li>Oui</li></ol><ol type="1" id="5e0fb53b-b611-4466-8426-705f31a0b207" class="numbered-list" start="5"><li>Oui</li></ol><p id="8ec5be6a-7222-456d-a885-9e1d67eb468e" class="">
+</p><ol type="1" id="eb9a6d46-053f-420e-934b-6321be6170e4" class="numbered-list" start="1"><li>Non</li></ol><ol type="1" id="11b563bf-39fe-44e1-beb3-d79dac059766" class="numbered-list" start="2"><li>Oui</li></ol><h2 id="5953d860-a5a7-4227-a51a-8a723b0e79f6" class="">B.</h2><h3 id="ca901ab8-b97e-47c1-93b3-ab114f229a50" class="">Ex 2 :</h3><p id="6902f13e-8c66-4132-9138-e15b8be65c6b" class="">1.</p><table id="9cb76fed-9034-46e9-953b-dd71efc38310" class="simple-table"><tbody><tr id="a048bceb-9fa1-44dc-a82c-166671e1e4a4"><td id="r_zQ" class="" style="width:27.662500381469727px">P</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">Q</td><td id="L{GD" class="" style="width:89.23750305175781px">Non P ou Q</td></tr><tr id="5334ad8c-c268-4c54-9569-46b5058ace20"><td id="r_zQ" class="" style="width:27.662500381469727px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:89.23750305175781px">V</td></tr><tr id="d1fe7ccd-c650-4cec-9655-7731315b953b"><td id="r_zQ" class="" style="width:27.662500381469727px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:89.23750305175781px">V</td></tr><tr id="dbe14e13-f9c6-4639-bf7b-0db04536cc08"><td id="r_zQ" class="" style="width:27.662500381469727px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:89.23750305175781px">F</td></tr><tr id="82355cf3-eb17-43d8-a514-8d17df6aebe0"><td id="r_zQ" class="" style="width:27.662500381469727px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:89.23750305175781px">V</td></tr></tbody></table><p id="ef9bcb55-32d6-452e-9b15-60bdc3665024" class="">2.</p><table id="979d17ea-18f7-40f3-9539-9139052678af" class="simple-table"><tbody><tr id="d7744879-47be-40b2-838c-0e3fdd366ea9"><td id="r_zQ" class="" style="width:27.662500381469727px">P</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">Q</td><td id="L{GD" class="" style="width:85.5625px">P et Non Q</td></tr><tr id="24a94214-c30e-4ab3-a9a4-6835915fb4b6"><td id="r_zQ" class="" style="width:27.662500381469727px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:85.5625px">F</td></tr><tr id="4bff0c99-a56e-47f5-b540-92648faf6acb"><td id="r_zQ" class="" style="width:27.662500381469727px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:85.5625px">V</td></tr><tr id="6e26a0c0-0395-4151-a82a-ac0ccc2d0f39"><td id="r_zQ" class="" style="width:27.662500381469727px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:85.5625px">F</td></tr><tr id="b8150f5c-9f39-4915-b268-6af694c9eef1"><td id="r_zQ" class="" style="width:27.662500381469727px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:85.5625px">F</td></tr></tbody></table><p id="5052cc52-f675-4f06-8c19-4943cf5bbd75" class="">3.</p><table id="93456027-e4b8-4abb-bd58-49827ac01375" class="simple-table"><tbody><tr id="4afd7188-5ab8-4484-82ec-860baf287bab"><td id="r_zQ" class="" style="width:27.662500381469727px">P</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">Q</td><td id="L{GD" class="" style="width:85.3499984741211px">Non P → Q</td></tr><tr id="32e554e8-514c-4c7c-89bd-6137ba018771"><td id="r_zQ" class="" style="width:27.662500381469727px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:85.3499984741211px">V</td></tr><tr id="bc365bef-6fe0-46d5-924f-8dd9acea78b5"><td id="r_zQ" class="" style="width:27.662500381469727px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:85.3499984741211px">V</td></tr><tr id="176f08c9-2604-4769-a6a4-d0c348ccd0f9"><td id="r_zQ" class="" style="width:27.662500381469727px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:85.3499984741211px">V</td></tr><tr id="0fb418bf-3880-45ea-be97-e1b802d74573"><td id="r_zQ" class="" style="width:27.662500381469727px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:85.3499984741211px">F</td></tr></tbody></table><p id="00520bfc-8a9e-4b93-8b4a-6b1fc2ade171" class="">4.</p><table id="f17fe4a9-37ff-4d30-b2e6-d7acaa655d66" class="simple-table"><tbody><tr id="e2ceb97d-165f-4efc-860b-ab50da4ebc59"><td id="r_zQ" class="" style="width:27.662500381469727px">P</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">Q</td><td id="L{GD" class="" style="width:59.26250076293945px">P et Q </td><td id="ptz:" class="" style="width:56.86249923706055px">Non R</td><td id="[{Fv" class="" style="width:117.4375px">(P et Q)→ Non R</td></tr><tr id="1dfbc8e6-7e1f-461c-8d74-eafec5f16113"><td id="r_zQ" class="" style="width:27.662500381469727px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:59.26250076293945px">V</td><td id="ptz:" class="" style="width:56.86249923706055px">F</td><td id="[{Fv" class="" style="width:117.4375px">F</td></tr><tr id="17386f87-ae1c-4ff6-9671-9edba206186d"><td id="r_zQ" class="" style="width:27.662500381469727px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:59.26250076293945px">V</td><td id="ptz:" class="" style="width:56.86249923706055px">V</td><td id="[{Fv" class="" style="width:117.4375px">V</td></tr><tr id="a6a322f4-a546-4703-aa34-fcffa1031c39"><td id="r_zQ" class="" style="width:27.662500381469727px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:56.86249923706055px">F</td><td id="[{Fv" class="" style="width:117.4375px">V</td></tr><tr id="24e733fb-c7c2-4207-8148-77fe449a1918"><td id="r_zQ" class="" style="width:27.662500381469727px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:56.86249923706055px">V</td><td id="[{Fv" class="" style="width:117.4375px">V</td></tr><tr id="3b4bad90-147d-4940-a2fa-9eb7e0531c84"><td id="r_zQ" class="" style="width:27.662500381469727px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:56.86249923706055px">F</td><td id="[{Fv" class="" style="width:117.4375px">V</td></tr><tr id="4210c240-b101-4e92-b7ac-e255e63e8388"><td id="r_zQ" class="" style="width:27.662500381469727px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:56.86249923706055px">V</td><td id="[{Fv" class="" style="width:117.4375px">V</td></tr><tr id="8c474040-1362-45c1-9814-f01c5b6237e6"><td id="r_zQ" class="" style="width:27.662500381469727px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:56.86249923706055px">F</td><td id="[{Fv" class="" style="width:117.4375px">V</td></tr><tr id="f8ab1946-0487-4e9e-afac-20adeb574e6e"><td id="r_zQ" class="" style="width:27.662500381469727px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:56.86249923706055px">V</td><td id="[{Fv" class="" style="width:117.4375px">V</td></tr></tbody></table><p id="047a6551-bf2e-4e13-b7f6-7852c017e1ee" class="">5.</p><table id="048fdbe6-ac95-4ca3-a625-a286e77de72f" class="simple-table"><tbody><tr id="b3b8f712-22bb-4fa1-b474-457c8b80e3ce"><td id="HV&lt;\" class="" style="width:59px">Non Q</td><td id="ptz:" class="" style="width:27.662500381469727px">R</td><td id="r_zQ" class="" style="width:56.28750228881836px">Non P</td><td id="L{GD" class="" style="width:89.80000305175781px">Non Q ou R</td><td id="[{Fv" class="" style="width:145.72500610351562px">Non P → Non Q ou R</td></tr><tr id="f18337e6-ca73-4d91-9252-8abea22f3b0a"><td id="HV&lt;\" class="" style="width:59px">F</td><td id="ptz:" class="" style="width:27.662500381469727px">V</td><td id="r_zQ" class="" style="width:56.28750228881836px">F</td><td id="L{GD" class="" style="width:89.80000305175781px">V</td><td id="[{Fv" class="" style="width:145.72500610351562px">V</td></tr><tr id="6f571b91-b2e4-4617-8a6f-6b4ae23898bb"><td id="HV&lt;\" class="" style="width:59px">F</td><td id="ptz:" class="" style="width:27.662500381469727px">F</td><td id="r_zQ" class="" style="width:56.28750228881836px">F</td><td id="L{GD" class="" style="width:89.80000305175781px">F</td><td id="[{Fv" class="" style="width:145.72500610351562px">V</td></tr><tr id="9bf019a2-eb9f-4999-bb0c-704f61fcb5be"><td id="HV&lt;\" class="" style="width:59px">V</td><td id="ptz:" class="" style="width:27.662500381469727px">V</td><td id="r_zQ" class="" style="width:56.28750228881836px">F</td><td id="L{GD" class="" style="width:89.80000305175781px">V</td><td id="[{Fv" class="" style="width:145.72500610351562px">V</td></tr><tr id="60f7def6-b4a3-4986-a7f4-0dea481c377a"><td id="HV&lt;\" class="" style="width:59px">V</td><td id="ptz:" class="" style="width:27.662500381469727px">F</td><td id="r_zQ" class="" style="width:56.28750228881836px">F</td><td id="L{GD" class="" style="width:89.80000305175781px">V</td><td id="[{Fv" class="" style="width:145.72500610351562px">V</td></tr><tr id="54757fd1-624a-4700-b5cf-d634cf2b464d"><td id="HV&lt;\" class="" style="width:59px">F</td><td id="ptz:" class="" style="width:27.662500381469727px">V</td><td id="r_zQ" class="" style="width:56.28750228881836px">V</td><td id="L{GD" class="" style="width:89.80000305175781px">V</td><td id="[{Fv" class="" style="width:145.72500610351562px">V</td></tr><tr id="da9e76b9-0c94-47d0-8e30-f26494ad900c"><td id="HV&lt;\" class="" style="width:59px">F</td><td id="ptz:" class="" style="width:27.662500381469727px">F</td><td id="r_zQ" class="" style="width:56.28750228881836px">V</td><td id="L{GD" class="" style="width:89.80000305175781px">F</td><td id="[{Fv" class="" style="width:145.72500610351562px">F</td></tr><tr id="d694b935-628a-475a-8d25-a744f827994a"><td id="HV&lt;\" class="" style="width:59px">V</td><td id="ptz:" class="" style="width:27.662500381469727px">V</td><td id="r_zQ" class="" style="width:56.28750228881836px">V</td><td id="L{GD" class="" style="width:89.80000305175781px">V</td><td id="[{Fv" class="" style="width:145.72500610351562px">V</td></tr><tr id="aaa81bf4-a348-49bd-8c87-f04ec237d3f0"><td id="HV&lt;\" class="" style="width:59px">V</td><td id="ptz:" class="" style="width:27.662500381469727px">F</td><td id="r_zQ" class="" style="width:56.28750228881836px">V</td><td id="L{GD" class="" style="width:89.80000305175781px">V</td><td id="[{Fv" class="" style="width:145.72500610351562px">V</td></tr></tbody></table><table id="f7272c15-9982-4259-8485-b87821b06d23" class="simple-table"><tbody><tr id="90e36736-3cf9-4fa9-bf9a-54a630bf15e6"><td id="r_zQ" class="" style="width:27.662500381469727px">P</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">Q</td><td id="L{GD" class="" style="width:59.26250076293945px">P et Q </td><td id="ptz:" class="" style="width:66px">Non R</td><td id="[{Fv" class="" style="width:117.4375px">(P et Q)→ Non R</td></tr><tr id="1ae8f92f-fda2-478b-a64b-377a9c372cb7"><td id="r_zQ" class="" style="width:27.662500381469727px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:59.26250076293945px">V</td><td id="ptz:" class="" style="width:66px">F</td><td id="[{Fv" class="" style="width:117.4375px">F</td></tr><tr id="209ad1ea-8ed1-4de2-ad18-f7ee85bdbc80"><td id="r_zQ" class="" style="width:27.662500381469727px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:59.26250076293945px">V</td><td id="ptz:" class="" style="width:66px">V</td><td id="[{Fv" class="" style="width:117.4375px">V</td></tr><tr id="eed167d4-02ae-4d13-adf6-27778d7424e6"><td id="r_zQ" class="" style="width:27.662500381469727px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:66px">F</td><td id="[{Fv" class="" style="width:117.4375px">V</td></tr><tr id="96aab71d-5786-40a2-b26b-40a245bb2745"><td id="r_zQ" class="" style="width:27.662500381469727px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:66px">V</td><td id="[{Fv" class="" style="width:117.4375px">V</td></tr><tr id="a9426010-1dbb-4412-8ab2-b776efe7cf24"><td id="r_zQ" class="" style="width:27.662500381469727px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:66px">F</td><td id="[{Fv" class="" style="width:117.4375px">V</td></tr><tr id="48b3f661-70f9-4930-b472-3b46cccb123b"><td id="r_zQ" class="" style="width:27.662500381469727px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:66px">V</td><td id="[{Fv" class="" style="width:117.4375px">V</td></tr><tr id="c5030a56-1ddc-4070-8358-dd3629e97013"><td id="r_zQ" class="" style="width:27.662500381469727px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:66px">F</td><td id="[{Fv" class="" style="width:117.4375px">V</td></tr><tr id="e3889125-ca0f-4790-8995-18e7f64d56e5"><td id="r_zQ" class="" style="width:27.662500381469727px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:66px">V</td><td id="[{Fv" class="" style="width:117.4375px">V</td></tr></tbody></table><div id="3d23e89b-7f14-44e1-9f84-639d7308473e" class="column-list"></div><h3 id="72b95872-c12b-4de0-8f3c-eefb2fedcd29" class="">Ex 3 :</h3><p id="2ab72f65-5927-4b36-aabd-123bbbbeaae6" class="">1.</p><table id="b6cd3d46-5e29-43ee-93c1-38ee43ade625" class="simple-table"><tbody><tr id="65423785-4cbb-43f8-99ee-03d891fa5716"><td id="r_zQ" class="" style="width:40px">P</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">Q</td><td id="L{GD" class="" style="width:59.26250076293945px">P et Q </td><td id="ptz:" class="" style="width:90.5250015258789px">Non(P et Q)</td></tr><tr id="85b53a9d-48ec-4e72-98c7-690c7fa3356e"><td id="r_zQ" class="" style="width:40px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:59.26250076293945px">V</td><td id="ptz:" class="" style="width:90.5250015258789px">F</td></tr><tr id="b388caea-4009-4b82-b061-768a1d8c5857"><td id="r_zQ" class="" style="width:40px">V</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:90.5250015258789px">V</td></tr><tr id="8e3262b2-7c2d-47b2-98b3-c04a035208b3"><td id="r_zQ" class="" style="width:40px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">V</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:90.5250015258789px">V</td></tr><tr id="710b4212-862c-4bfe-bd10-6e80a9aa110d"><td id="r_zQ" class="" style="width:40px">F</td><td id="HV&lt;\" class="" style="width:29.42500114440918px">F</td><td id="L{GD" class="" style="width:59.26250076293945px">F</td><td id="ptz:" class="" style="width:90.5250015258789px">V</td></tr></tbody></table><table id="5704e05f-6764-40f1-8b73-36e22b9af842" class="simple-table"><tbody><tr id="5db2ebae-e191-4c03-bbd9-760c3b3a9db7"><td id="r_zQ" class="" style="width:69px">Non P</td><td id="HV&lt;\" class="" style="width:66px">Non Q</td><td id="ptz:" class="" style="width:123px">Non P ou Non Q</td></tr><tr id="4a0e2c3f-1d0d-4957-9811-2b76eea2c3ef"><td id="r_zQ" class="" style="width:69px">V</td><td id="HV&lt;\" class="" style="width:66px">V</td><td id="ptz:" class="" style="width:123px">F</td></tr><tr id="8254c9f5-592a-462a-80f7-bc18fc873245"><td id="r_zQ" class="" style="width:69px">V</td><td id="HV&lt;\" class="" style="width:66px">F</td><td id="ptz:" class="" style="width:123px">V</td></tr><tr id="b740132f-6829-4590-b835-4e92ff752dbb"><td id="r_zQ" class="" style="width:69px">F</td><td id="HV&lt;\" class="" style="width:66px">V</td><td id="ptz:" class="" style="width:123px">V</td></tr><tr id="c51534a3-cda7-4e81-966b-f39780423f1f"><td id="r_zQ" class="" style="width:69px">F</td><td id="HV&lt;\" class="" style="width:66px">F</td><td id="ptz:" class="" style="width:123px">V</td></tr></tbody></table><div id="0fedf4ea-7a18-424c-ac4e-14948fd87deb" class="column-list"></div><p id="b475b43f-ca3d-4b75-993d-5837534f4638" class="">2.</p><table id="af9329c5-35cd-4e06-991c-e565f3ed8263" class="simple-table"><tbody><tr id="dd2fa590-c23d-435d-a405-def2e5b8d629"><td id="QV_q" class="" style="width:35px">P</td><td id="BTvk" class="" style="width:29.42500114440918px">Q</td><td id="~V&lt;H" class="" style="width:62.9375px">P ou Q </td><td id="gelJ" class="">Non(P ou Q) </td></tr><tr id="849779b7-4d03-4960-86f5-0bea15f635ca"><td id="QV_q" class="" style="width:35px">V</td><td id="BTvk" class="" style="width:29.42500114440918px">V</td><td id="~V&lt;H" class="" style="width:62.9375px">V</td><td id="gelJ" class="">F</td></tr><tr id="027d339f-cbc1-458f-b2bd-c8c21e5247f3"><td id="QV_q" class="" style="width:35px">V</td><td id="BTvk" class="" style="width:29.42500114440918px">F</td><td id="~V&lt;H" class="" style="width:62.9375px">V</td><td id="gelJ" class="">F</td></tr><tr id="92f6a992-db52-4a79-a8ba-9f4029590783"><td id="QV_q" class="" style="width:35px">F</td><td id="BTvk" class="" style="width:29.42500114440918px">V</td><td id="~V&lt;H" class="" style="width:62.9375px">V</td><td id="gelJ" class="">F</td></tr><tr id="0cc856a7-d9dd-49a2-bc17-fc29b072501f"><td id="QV_q" class="" style="width:35px">F</td><td id="BTvk" class="" style="width:29.42500114440918px">F</td><td id="~V&lt;H" class="" style="width:62.9375px">F</td><td id="gelJ" class="">V</td></tr></tbody></table><table id="93945cb9-9a13-4022-a90e-61d1f4a5d5ee" class="simple-table"><tbody><tr id="c5da5240-6a66-43a4-9c9f-fc7c51f7c812"><td id="QV_q" class="" style="width:56.28750228881836px">P</td><td id="BTvk" class="" style="width:59px">Q</td><td id="~V&lt;H" class="" style="width:118.42500305175781px">Non P et Non Q </td></tr><tr id="d0b7097d-9b39-4af5-a419-32666ca5b0e4"><td id="QV_q" class="" style="width:56.28750228881836px">V</td><td id="BTvk" class="" style="width:59px">V</td><td id="~V&lt;H" class="" style="width:118.42500305175781px">F</td></tr><tr id="b21b555d-c319-472e-880c-18bf3eb437f5"><td id="QV_q" class="" style="width:56.28750228881836px">V</td><td id="BTvk" class="" style="width:59px">F</td><td id="~V&lt;H" class="" style="width:118.42500305175781px">F</td></tr><tr id="616ca54d-8126-4948-b8e3-59edb236c323"><td id="QV_q" class="" style="width:56.28750228881836px">F</td><td id="BTvk" class="" style="width:59px">V</td><td id="~V&lt;H" class="" style="width:118.42500305175781px">F</td></tr><tr id="93665f56-28ee-4175-82bd-1c08a5c5186b"><td id="QV_q" class="" style="width:56.28750228881836px">F</td><td id="BTvk" class="" style="width:59px">F</td><td id="~V&lt;H" class="" style="width:118.42500305175781px">V</td></tr></tbody></table><p id="d9da8db3-9a24-4c7a-8ee0-2a510cf34431" class="">3.</p><table id="89f286e8-49f0-4882-b02a-7867cb4d5401" class="simple-table"><tbody><tr id="35db5981-3226-4c79-922a-e8ffa1d8648b"><td id="QV_q" class="" style="width:35px">P</td><td id="BTvk" class="" style="width:29.42500114440918px">Q</td><td id="~V&lt;H" class="" style="width:62.9375px">P → Q </td><td id="gelJ" class="">Non(P → Q) </td></tr><tr id="056cd6bf-558f-4267-9a34-8d4738fdbd9f"><td id="QV_q" class="" style="width:35px">V</td><td id="BTvk" class="" style="width:29.42500114440918px">V</td><td id="~V&lt;H" class="" style="width:62.9375px">V</td><td id="gelJ" class="">F</td></tr><tr id="a3136d68-4a56-4a24-b91a-91eb32714d93"><td id="QV_q" class="" style="width:35px">V</td><td id="BTvk" class="" style="width:29.42500114440918px">F</td><td id="~V&lt;H" class="" style="width:62.9375px">F</td><td id="gelJ" class="">V</td></tr><tr id="32ee59db-b8d3-45b7-9152-e25bd154ad6c"><td id="QV_q" class="" style="width:35px">F</td><td id="BTvk" class="" style="width:29.42500114440918px">V</td><td id="~V&lt;H" class="" style="width:62.9375px">V</td><td id="gelJ" class="">F</td></tr><tr id="62fd2561-995d-4714-b0d1-fa170827da3a"><td id="QV_q" class="" style="width:35px">F</td><td id="BTvk" class="" style="width:29.42500114440918px">F</td><td id="~V&lt;H" class="" style="width:62.9375px">F</td><td id="gelJ" class="">F</td></tr></tbody></table><table id="26793e05-8469-46bf-a206-329adee83067" class="simple-table"><tbody><tr id="d673236d-0474-4dda-871f-cd3f39ef2db8"><td id="QV_q" class="" style="width:56.28750228881836px">P</td><td id="BTvk" class="" style="width:59px">Q</td><td id="~V&lt;H" class="" style="width:118.42500305175781px">P et Non Q </td></tr><tr id="3330aa7a-cf2f-41a1-a559-902a05975237"><td id="QV_q" class="" style="width:56.28750228881836px">V</td><td id="BTvk" class="" style="width:59px">V</td><td id="~V&lt;H" class="" style="width:118.42500305175781px">F</td></tr><tr id="582c8168-15e6-43aa-aab5-42471c86ecf4"><td id="QV_q" class="" style="width:56.28750228881836px">V</td><td id="BTvk" class="" style="width:59px">F</td><td id="~V&lt;H" class="" style="width:118.42500305175781px">V</td></tr><tr id="c6bf17a0-d12f-4f75-924f-b63e7a086e08"><td id="QV_q" class="" style="width:56.28750228881836px">F</td><td id="BTvk" class="" style="width:59px">V</td><td id="~V&lt;H" class="" style="width:118.42500305175781px">F</td></tr><tr id="87acff75-9149-4f16-865f-050022754d2f"><td id="QV_q" class="" style="width:56.28750228881836px">F</td><td id="BTvk" class="" style="width:59px">F</td><td id="~V&lt;H" class="" style="width:118.42500305175781px">F</td></tr></tbody></table><p id="65e7c393-ebf7-438c-b5fa-fa55b1b145e9" class="">4.</p><table id="a4ddc527-bd73-4cff-b0e0-2bdeec7480bb" class="simple-table"><tbody><tr id="ba617c6a-81ff-4069-9f79-b361f924cbc2"><td id="BTvk" class="" style="width:29.42500114440918px">Q</td><td id="wQNb" class="" style="width:27.662500381469727px">R</td><td id="QV_q" class="" style="width:27.662500381469727px">P</td><td id="~V&lt;H" class="" style="width:62.9375px">Q ou R</td><td id="gelJ" class="">P Et (Q ou R) </td></tr><tr id="f9a56b9e-1658-4650-85c5-3138e367727f"><td id="BTvk" class="" style="width:29.42500114440918px">V</td><td id="wQNb" class="" style="width:27.662500381469727px">V</td><td id="QV_q" class="" style="width:27.662500381469727px">V</td><td id="~V&lt;H" class="" style="width:62.9375px">V</td><td id="gelJ" class="">V</td></tr><tr id="c844543e-cb47-4d5b-9c07-49b79d58d58d"><td id="BTvk" class="" style="width:29.42500114440918px">F</td><td id="wQNb" class="" style="width:27.662500381469727px">V</td><td id="QV_q" class="" style="width:27.662500381469727px">V</td><td id="~V&lt;H" class="" style="width:62.9375px">V</td><td id="gelJ" class="">V</td></tr><tr id="d75efa17-46e8-4b8c-a764-cf05ccbb241d"><td id="BTvk" class="" style="width:29.42500114440918px">V</td><td id="wQNb" class="" style="width:27.662500381469727px">V</td><td id="QV_q" class="" style="width:27.662500381469727px">F</td><td id="~V&lt;H" class="" style="width:62.9375px">V</td><td id="gelJ" class="">F</td></tr><tr id="2ce2333b-cbf8-4d33-b0c3-1445120e574f"><td id="BTvk" class="" style="width:29.42500114440918px">F</td><td id="wQNb" class="" style="width:27.662500381469727px">V</td><td id="QV_q" class="" style="width:27.662500381469727px">F</td><td id="~V&lt;H" class="" style="width:62.9375px">V</td><td id="gelJ" class="">F</td></tr><tr id="a42c483c-a73d-4b66-b97e-4b9b1b2ed5bc"><td id="BTvk" class="" style="width:29.42500114440918px">V</td><td id="wQNb" class="" style="width:27.662500381469727px">F</td><td id="QV_q" class="" style="width:27.662500381469727px">V</td><td id="~V&lt;H" class="" style="width:62.9375px">V</td><td id="gelJ" class="">V</td></tr><tr id="092598f9-da2f-4c6a-a876-14d236386b9a"><td id="BTvk" class="" style="width:29.42500114440918px">F</td><td id="wQNb" class="" style="width:27.662500381469727px">F</td><td id="QV_q" class="" style="width:27.662500381469727px">V</td><td id="~V&lt;H" class="" style="width:62.9375px">F</td><td id="gelJ" class="">F</td></tr><tr id="6c38b2f8-6223-490e-87fe-0e249bf595bd"><td id="BTvk" class="" style="width:29.42500114440918px">V</td><td id="wQNb" class="" style="width:27.662500381469727px">F</td><td id="QV_q" class="" style="width:27.662500381469727px">F</td><td id="~V&lt;H" class="" style="width:62.9375px">V</td><td id="gelJ" class="">F</td></tr><tr id="8e17dd9d-ab02-4f11-8f6d-e6db3a22d77e"><td id="BTvk" class="" style="width:29.42500114440918px">F</td><td id="wQNb" class="" style="width:27.662500381469727px">F</td><td id="QV_q" class="" style="width:27.662500381469727px">F</td><td id="~V&lt;H" class="" style="width:62.9375px">F</td><td id="gelJ" class="">F</td></tr></tbody></table><table id="9821b002-8481-41f9-bdff-016a6389c7b6" class="simple-table"><tbody><tr id="663eafbe-fbd1-49c4-91e2-03a1123367d5"><td id="QV_q" class="" style="width:27.662500381469727px">P</td><td id="BTvk" class="" style="width:29.42500114440918px">Q</td><td id="LEJs" class="" style="width:27.274999618530273px">R</td><td id="~V&lt;H" class="" style="width:59.26250076293945px">P et Q </td><td id="QenP" class="" style="width:53.837501525878906px">P et R</td><td id="\wIw" class="" style="width:129.8249969482422px">(P et Q) ou (P et R)</td></tr><tr id="af5db89f-1596-41c1-bfa9-cb96d094d377"><td id="QV_q" class="" style="width:27.662500381469727px">V</td><td id="BTvk" class="" style="width:29.42500114440918px">V</td><td id="LEJs" class="" style="width:27.274999618530273px">V</td><td id="~V&lt;H" class="" style="width:59.26250076293945px">V</td><td id="QenP" class="" style="width:53.837501525878906px">V</td><td id="\wIw" class="" style="width:129.8249969482422px">V</td></tr><tr id="fc5288f7-382d-41b5-9613-1020d74314a8"><td id="QV_q" class="" style="width:27.662500381469727px">V</td><td id="BTvk" class="" style="width:29.42500114440918px">F</td><td id="LEJs" class="" style="width:27.274999618530273px">V</td><td id="~V&lt;H" class="" style="width:59.26250076293945px">F</td><td id="QenP" class="" style="width:53.837501525878906px">V</td><td id="\wIw" class="" style="width:129.8249969482422px">V</td></tr><tr id="2efe6ea7-df2b-449e-b701-6abcf9877368"><td id="QV_q" class="" style="width:27.662500381469727px">F</td><td id="BTvk" class="" style="width:29.42500114440918px">V</td><td id="LEJs" class="" style="width:27.274999618530273px">V</td><td id="~V&lt;H" class="" style="width:59.26250076293945px">F</td><td id="QenP" class="" style="width:53.837501525878906px">F</td><td id="\wIw" class="" style="width:129.8249969482422px">F</td></tr><tr id="8778f096-8d9e-4ba6-9e19-c49154f9e8e1"><td id="QV_q" class="" style="width:27.662500381469727px">F</td><td id="BTvk" class="" style="width:29.42500114440918px">F</td><td id="LEJs" class="" style="width:27.274999618530273px">V</td><td id="~V&lt;H" class="" style="width:59.26250076293945px">F</td><td id="QenP" class="" style="width:53.837501525878906px">F</td><td id="\wIw" class="" style="width:129.8249969482422px">F</td></tr><tr id="b17071f3-d33b-40b6-8534-b094e949126b"><td id="QV_q" class="" style="width:27.662500381469727px">V</td><td id="BTvk" class="" style="width:29.42500114440918px">V</td><td id="LEJs" class="" style="width:27.274999618530273px">F</td><td id="~V&lt;H" class="" style="width:59.26250076293945px">V</td><td id="QenP" class="" style="width:53.837501525878906px">F</td><td id="\wIw" class="" style="width:129.8249969482422px">V</td></tr><tr id="7c27473d-0f9e-4f6f-9e7e-077c2eee2acc"><td id="QV_q" class="" style="width:27.662500381469727px">V</td><td id="BTvk" class="" style="width:29.42500114440918px">F</td><td id="LEJs" class="" style="width:27.274999618530273px">F</td><td id="~V&lt;H" class="" style="width:59.26250076293945px">F</td><td id="QenP" class="" style="width:53.837501525878906px">F</td><td id="\wIw" class="" style="width:129.8249969482422px">F</td></tr><tr id="27075620-2bee-4fae-ae68-ead3d333bb6e"><td id="QV_q" class="" style="width:27.662500381469727px">F</td><td id="BTvk" class="" style="width:29.42500114440918px">V</td><td id="LEJs" class="" style="width:27.274999618530273px">F</td><td id="~V&lt;H" class="" style="width:59.26250076293945px">F</td><td id="QenP" class="" style="width:53.837501525878906px">F</td><td id="\wIw" class="" style="width:129.8249969482422px">F</td></tr><tr id="2db9f94c-0e0e-4a30-a7b3-d37a0aced540"><td id="QV_q" class="" style="width:27.662500381469727px">F</td><td id="BTvk" class="" style="width:29.42500114440918px">F</td><td id="LEJs" class="" style="width:27.274999618530273px">F</td><td id="~V&lt;H" class="" style="width:59.26250076293945px">F</td><td id="QenP" class="" style="width:53.837501525878906px">F</td><td id="\wIw" class="" style="width:129.8249969482422px">F</td></tr></tbody></table><h2 id="9a959394-782a-4e4f-90c3-8fb4bb05fa3e" class="">B.</h2><h3 id="67af7bbb-31bd-4a5c-805d-f48bd709d18b" class="">Ex 4 :</h3><ol type="1" id="fd68fe32-9f9a-46bb-ade1-bd3853c496fb" class="numbered-list" start="1"><li><mark class="highlight-yellow">Non(a ou (Non b))</mark> = (Non a) et b</li></ol><ol type="1" id="139b3233-6b06-4873-932e-1bff49d123de" class="numbered-list" start="2"><li><mark class="highlight-yellow">Non(a et (Non b))</mark> = (Non a) ou b</li></ol><ol type="1" id="f9f3a252-25ea-4cf9-9d47-8c4f24b1233f" class="numbered-list" start="3"><li><mark class="highlight-yellow">Non(a ou (b et c))</mark> = (Non a) et non(b et c) = (non a) et (non b) ou (non c)</li></ol><ol type="1" id="a2371ae9-aa91-47e6-ad00-c08d918ae88e" class="numbered-list" start="4"><li><mark class="highlight-yellow">Non(a ou (b et c))</mark> = (Non a) ou non(b et c) = (non a) ou (non b) et (non c)</li></ol><ol type="1" id="c3d14758-8a21-432a-9681-5f9c31937086" class="numbered-list" start="5"><li><mark class="highlight-yellow">Non(a → (non b))</mark> = a et b</li></ol><ol type="1" id="60609705-e612-4b56-832f-c28c57011990" class="numbered-list" start="6"><li><mark class="highlight-yellow">Non(Non(a ou b) → c)</mark> = Non(a ou b) et (non c) = (non b) et (non b) et (non c)</li></ol><ol type="1" id="3ee4e574-17aa-494b-bb51-361f62db8e57" class="numbered-list" start="7"><li><mark class="highlight-yellow">Non(a et (non b) → c)</mark> = Non(a et (non b)) et (non c) = (non a) ou b et (non c)</li></ol><ol type="1" id="806a0751-5ece-4378-b721-bb9affc49e95" class="numbered-list" start="8"><li></li></ol><ol type="1" id="aaca5f88-1980-43e6-94f8-0c87f6db8acc" class="numbered-list" start="9"><li></li></ol><ol type="1" id="a0663c65-54b4-4bff-97e6-c390c8a63443" class="numbered-list" start="10"><li><mark class="highlight-yellow">Non((a ou (non b)) → (non c))</mark> = <mark class="highlight-default">(a ou (non b)) et c = </mark></li></ol><h3 id="3473cd6b-df90-4aaf-9d8e-094b83e79bd9" class="">Ex 5 :</h3><ol type="1" id="bc12276f-db58-43e2-8bb9-3b922a692c0b" class="numbered-list" start="1"><li></li></ol><ol type="1" id="e5a5d220-e534-4122-8ac3-8be85ffc0b7c" class="numbered-list" start="2"><li></li></ol><h2 id="b6dab04a-d3f8-4edb-8da1-8942277596f2" class="block-color-blue_background"><mark class="highlight-blue">Slides</mark></h2><hr id="d63c816f-c5ea-4c20-addd-29db1b7fda7a"/><ul id="9c6d6a59-9aac-48a3-87ac-b811a1664cf8" class="toggle"><li><details open=""><summary>Mathématique Discrète</summary></details></li></ul><figure id="2f2649d9-7921-4a8c-8a4b-5a028e511c8a"><div class="source"><a href="Math%206366cd10c08a4a17a964f67d3b3d149e/Cours1-a5-numerote.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/78b69107-ba59-4aa5-8746-27c16d9a2ffe/d7ad758f-22ab-4992-b496-3c0bcbc5f084/Cours1-a5-numerote.pdf</a></div></figure><figure id="cfeb61d9-edfa-40bf-8383-9f17b37aa2c9"><div class="source"><a href="Math%206366cd10c08a4a17a964f67d3b3d149e/Cours2-a5-numerote.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/78b69107-ba59-4aa5-8746-27c16d9a2ffe/9fbd85b2-1e80-4782-a831-e5300e5cc9e1/Cours2-a5-numerote.pdf</a></div></figure><figure id="c3be5ef9-0e00-4ae6-925c-6b8f635fd9f9"><div class="source"><a href="Math%206366cd10c08a4a17a964f67d3b3d149e/Cours3Couv.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/78b69107-ba59-4aa5-8746-27c16d9a2ffe/332c290c-9e19-422b-b2b8-b3e9ede3ed78/Cours3Couv.pdf</a></div></figure><h2 id="309b75e8-d15a-44f2-8349-b8a685b18b57" class="block-color-teal_background"><mark class="highlight-teal">Pour réviser le cours)</mark></h2><hr id="9d82c668-30d4-40e7-b5bf-672bd27a8e49"/><p id="428c3d4d-cb81-482a-887d-1ffb6352bd8f" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
